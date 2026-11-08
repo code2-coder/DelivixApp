@@ -72,7 +72,7 @@ app.get("/api/health", (_req, res) => {
 // Allowed Origins for CORS
 const envOrigins = [process.env.CLIENT_URL, process.env.FRONTEND_URL]
   .filter(Boolean)
-  .flatMap((u) => u.split(",").map((s) => s.trim()))
+  .flatMap((u) => u.split(",").map((s) => s.trim().replace(/\/+$/, "")))
   .filter(Boolean);
 
 const allowedOrigins = [
@@ -80,6 +80,10 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:5173",
   "http://127.0.0.1:3000",
+  "https://delivix.in",
+  "https://www.delivix.in",
+  "http://delivix.in",
+  "http://www.delivix.in",
   ...envOrigins,
 ];
 
@@ -89,26 +93,32 @@ app.use(
       // Allow requests with no origin (e.g. mobile apps, curl, server-to-server)
       if (!origin) return callback(null, true);
 
+      const normalizedOrigin = origin.replace(/\/+$/, "");
+
       const isLocalhost =
-        origin.startsWith("http://localhost:") ||
-        origin.startsWith("http://127.0.0.1:") ||
-        origin === "http://localhost" ||
-        origin === "http://127.0.0.1";
+        normalizedOrigin.startsWith("http://localhost:") ||
+        normalizedOrigin.startsWith("http://127.0.0.1:") ||
+        normalizedOrigin === "http://localhost" ||
+        normalizedOrigin === "http://127.0.0.1";
 
       if (isLocalhost) {
         return callback(null, true);
       }
 
       // Explicit match from env or configured origins
-      if (allowedOrigins.includes(origin)) {
+      if (allowedOrigins.includes(normalizedOrigin)) {
         return callback(null, true);
       }
 
-      // Automatically allow Vercel previews & production, Railway, and Render
+      // Automatically allow Vercel previews & production, Railway, Render, and Delivix domain
       if (
-        origin.endsWith(".vercel.app") ||
-        origin.endsWith(".railway.app") ||
-        origin.endsWith(".onrender.com")
+        normalizedOrigin.endsWith(".vercel.app") ||
+        normalizedOrigin.endsWith(".railway.app") ||
+        normalizedOrigin.endsWith(".onrender.com") ||
+        normalizedOrigin === "https://delivix.in" ||
+        normalizedOrigin === "https://www.delivix.in" ||
+        normalizedOrigin.endsWith(".delivix.in") ||
+        normalizedOrigin.endsWith("delivix.in")
       ) {
         return callback(null, true);
       }

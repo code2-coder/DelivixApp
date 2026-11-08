@@ -2,7 +2,7 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../models/User.js";
 
-const callbackURL = process.env.GOOGLE_CALLBACK_URL || "https://shreeharikripa.onrender.com/api/v1/auth/google/callback";
+const callbackURL = process.env.GOOGLE_CALLBACK_URL || "https://delivixapp.onrender.com/api/v1/auth/google/callback";
 
 // Only register Google OAuth strategy if credentials are present.
 // Skipping gracefully prevents a startup crash when env vars are missing.

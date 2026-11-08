@@ -281,9 +281,7 @@ export class AuthController {
   }
 
   async googleCallback(req, res, next) {
-    const clientUrl = process.env.CLIENT_URL === 'https://jewellery-app-iota.vercel.app' || process.env.CLIENT_URL === 'https://shree-hari-kripa.vercel.app'
-      ? 'https://www.shreeharikripa.com' 
-      : (process.env.CLIENT_URL || 'https://www.shreeharikripa.com');
+    const clientUrl = process.env.CLIENT_URL || 'https://www.delivix.in';
 
     try {
       if (!req.user) {
