@@ -1,0 +1,10 @@
+{
+  "description": "Experience a premium e-commerce platform for electronics and smart gadgets, featuring a sleek black-and-white design, intuitive navigation, and seamless shopping.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

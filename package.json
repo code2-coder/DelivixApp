@@ -1,0 +1,17 @@
+{
+  "name": "delivix-e-commerce",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"frontend,backend\" -c \"cyan,magenta\" --kill-others-on-fail \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\"",
+    "dev:all": "concurrently -n \"frontend,backend\" -c \"cyan,magenta\" --kill-others-on-fail \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\"",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix backend run start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
