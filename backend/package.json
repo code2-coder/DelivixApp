@@ -8,6 +8,7 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "tsx watch src/server.js",
+    "build": "echo \"Backend build completed\"",
     "start": "node src/server.js",
     "test": "node --test \"tests/*.test.js\"",
     "orders:backfill": "node scripts/backfillOrders.js",
